@@ -1,0 +1,35 @@
+name: CodeStyle
+
+on: [push]
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.dist', '.env');"
+      - name: Install Dependencies
+        run: composer install --no-ansi --no-interaction --no-suggest --no-progress --prefer-dist --ignore-platform-reqs
+      - name: Execute tests (Unit) via PHPUnit
+        run: vendor/bin/phpunit.phar
+  phpcs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.dist', '.env');"
+      - name: Install Dependencies
+        run: composer install --no-ansi --no-interaction --no-suggest --no-progress --prefer-dist --ignore-platform-reqs
+      - name: Execute PHPCS
+        run: vendor/bin/phpcs.phar -p
+  phpstan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.dist', '.env');"
+      - name: Install Dependencies
+        run: composer install --no-ansi --no-interaction --no-suggest --no-progress --prefer-dist --ignore-platform-reqs
+      - name: Execute PHPStan
+        run: vendor/bin/phpstan.phar analyze -c ./phpstan.neon --no-progress src

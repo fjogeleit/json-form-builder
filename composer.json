@@ -1,0 +1,47 @@
+{
+    "name": "fjogeleit/json-form-builder",
+    "description": "Build JSON based Form Configurations",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Frank",
+            "email": "fj@move-elevator.de"
+        }
+    ],
+    "require": {
+        "ext-json": "*",
+        "marc-mabe/php-enum": "^4.2",
+        "beberlei/assert": "^3.2"
+    },
+    "require-dev": {
+        "ramsey/uuid": "^4.0",
+        "tm/tooly-composer-script": "^1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "JsonFormBuilder\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JsonFormBuilder\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Tooly\\ScriptHandler::installPharTools"
+        ],
+        "post-update-cmd": [
+            "Tooly\\ScriptHandler::installPharTools"
+        ]
+    },
+    "extra": {
+        "tools": {
+            "phpunit": {
+                "url": "https://phar.phpunit.de/phpunit-8.5.2.phar",
+                "force-replace": true
+            }
+        }
+    }
+}
