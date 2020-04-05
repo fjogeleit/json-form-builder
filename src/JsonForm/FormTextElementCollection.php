@@ -32,7 +32,10 @@ class FormTextElementCollection implements JsonSerializable
             throw ItemAlreadyAdded::with($element->formTextElementId());
         }
 
-        return new self($element, ...$this->elements);
+        $elements = $this->elements;
+        $elements[] = $element;
+
+        return new self(...$elements);
     }
 
     public function replace(FormTextElement $element): self

@@ -79,16 +79,28 @@ class Input extends FormField
 
     public function placeholder(): ?string
     {
+        if ('' === $this->placeholder) {
+            return null;
+        }
+
         return $this->placeholder;
     }
 
     public function min()
     {
+        if ('' === $this->min) {
+            return null;
+        }
+
         return $this->min;
     }
 
     public function max()
     {
+        if ('' === $this->max) {
+            return null;
+        }
+
         return $this->max;
     }
 

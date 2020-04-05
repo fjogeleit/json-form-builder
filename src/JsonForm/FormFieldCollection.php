@@ -32,7 +32,10 @@ class FormFieldCollection implements JsonSerializable
             throw ItemAlreadyAdded::with($formField->formFieldId());
         }
 
-        return new self($formField, ...$this->formFields);
+        $formFields = $this->formFields;
+        $formFields[] = $formField;
+
+        return new self(...$formFields);
     }
 
     public function replace(FormField $formField): self

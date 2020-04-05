@@ -10,6 +10,7 @@
         }
     ],
     "require": {
+        "php": ">=7.3",
         "ext-json": "*",
         "marc-mabe/php-enum": "^4.2",
         "beberlei/assert": "^3.2"

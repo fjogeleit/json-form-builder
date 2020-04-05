@@ -53,6 +53,10 @@ class TextArea extends FormField
 
     public function placeholder(): ?string
     {
+        if ('' === $this->placeholder) {
+            return null;
+        }
+
         return $this->placeholder;
     }
 

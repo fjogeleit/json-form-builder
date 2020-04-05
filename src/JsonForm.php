@@ -64,6 +64,16 @@ class JsonForm implements JsonSerializable
         $this->formTextElements = $this->formTextElements()->add($formTextElement);
     }
 
+    public function replaceFormField(FormField $formField): void
+    {
+        $this->formFields = $this->formFields()->replace($formField);
+    }
+
+    public function replaceFormTextElement(FormTextElement $formTextElement): void
+    {
+        $this->formTextElements = $this->formTextElements()->replace($formTextElement);
+    }
+
     public function removeFormField(string $formFieldId): void
     {
         $this->formFields = $this->formFields()->remove($formFieldId);

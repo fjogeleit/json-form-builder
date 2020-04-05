@@ -58,6 +58,11 @@ class JsonResult implements JsonSerializable
         $this->formFieldValues = $this->formFieldValues()->add($fieldValue);
     }
 
+    public function replaceValue(FormFieldValue $fieldValue): void
+    {
+        $this->formFieldValues = $this->formFieldValues()->replace($fieldValue);
+    }
+
     public function removeValue(string $fieldValueId): void
     {
         $this->formFieldValues = $this->formFieldValues()->remove($fieldValueId);

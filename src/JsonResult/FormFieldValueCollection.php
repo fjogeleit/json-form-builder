@@ -31,7 +31,10 @@ class FormFieldValueCollection implements JsonSerializable
             throw ItemAlreadyAdded::with($formFieldValue->formFieldId());
         }
 
-        return new self($formFieldValue, ...$this->formFieldValues);
+        $formFieldValues = $this->formFieldValues;
+        $formFieldValues[] = $formFieldValue;
+
+        return new self(...$formFieldValues);
     }
 
     public function remove(string $formFieldValueId): self

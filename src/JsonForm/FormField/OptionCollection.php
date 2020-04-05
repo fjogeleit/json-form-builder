@@ -7,7 +7,7 @@ namespace JsonFormBuilder\JsonForm\FormField;
 use JsonFormBuilder\JsonForm\Exception\ValueNotExistsInOptions;
 use JsonSerializable;
 
-class OptionCollection implements JsonSerializable
+class OptionCollection extends \ArrayIterator implements JsonSerializable
 {
     /**
      * @var Option[]
@@ -17,6 +17,7 @@ class OptionCollection implements JsonSerializable
     public function __construct(Option ...$options)
     {
         $this->options = $options;
+        parent::__construct($options);
     }
 
     public static function emptyList(): self
@@ -26,7 +27,10 @@ class OptionCollection implements JsonSerializable
 
     public function add(Option $option): self
     {
-        return new self($option, ...$this->options);
+        $options = $this->options;
+        $options[] = $option;
+
+        return new self(...$options);
     }
 
     public function remove(string $value): self
