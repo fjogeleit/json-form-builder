@@ -117,6 +117,7 @@ class CreateJsonFormTest extends TestCase
                 'visible' => true,
                 'inputType' => InputType::TEXT,
                 'position' => 1,
+                'class' => Input::class,
             ],
             [
                 'formFieldId' => $checkboxId,
@@ -126,6 +127,7 @@ class CreateJsonFormTest extends TestCase
                 'required' => false,
                 'visible' => true,
                 'position' => 2,
+                'class' => Checkbox::class,
             ],
             [
                 'formFieldId' => $checkboxGroupId,
@@ -136,6 +138,7 @@ class CreateJsonFormTest extends TestCase
                 'required' => false,
                 'visible' => true,
                 'position' => 3,
+                'class' => CheckboxGroup::class,
             ],
             [
                 'formFieldId' => $radioButtonId,
@@ -145,6 +148,7 @@ class CreateJsonFormTest extends TestCase
                 'required' => false,
                 'visible' => true,
                 'position' => 4,
+                'class' => RadioButton::class,
             ],
             [
                 'formFieldId' => $radioButtonGroupId,
@@ -155,6 +159,7 @@ class CreateJsonFormTest extends TestCase
                 'required' => false,
                 'visible' => true,
                 'position' => 5,
+                'class' => RadioButtonGroup::class,
             ],
             [
                 'formFieldId' => $selectId,
@@ -165,6 +170,7 @@ class CreateJsonFormTest extends TestCase
                 'required' => false,
                 'visible' => true,
                 'position' => 6,
+                'class' => Select::class,
             ],
             [
                 'formFieldId' => $textAreaId,
@@ -174,6 +180,7 @@ class CreateJsonFormTest extends TestCase
                 'required' => false,
                 'visible' => true,
                 'position' => 7,
+                'class' => TextArea::class,
             ]
         ];
 
@@ -219,54 +226,63 @@ class CreateJsonFormTest extends TestCase
                 'text' => 'Headline 1',
                 'position' => 8,
                 'formTextElementType' => 'h1',
+                'class' => Headline1::class,
             ],
             [
                 'formTextElementId' => $headline2Id,
                 'text' => 'Headline 2',
                 'position' => 9,
                 'formTextElementType' => 'h2',
+                'class' => Headline2::class,
             ],
             [
                 'formTextElementId' => $headline3Id,
                 'text' => 'Headline 3',
                 'position' => 10,
                 'formTextElementType' => 'h3',
+                'class' => Headline3::class,
             ],
             [
                 'formTextElementId' => $headline4Id,
                 'text' => 'Headline 4',
                 'position' => 11,
                 'formTextElementType' => 'h4',
+                'class' => Headline4::class,
             ],
             [
                 'formTextElementId' => $headline5Id,
                 'text' => 'Headline 5',
                 'position' => 12,
                 'formTextElementType' => 'h5',
+                'class' => Headline5::class,
             ],
             [
                 'formTextElementId' => $headline6Id,
                 'text' => 'Headline 6',
                 'position' => 13,
                 'formTextElementType' => 'h6',
+                'class' => Headline6::class,
             ],
             [
                 'formTextElementId' => $paragraphId,
                 'text' => 'Paragraph',
                 'position' => 14,
                 'formTextElementType' => 'p',
+                'class' => Paragraph::class,
             ],
             [
                 'formTextElementId' => $quoteId,
                 'text' => 'Quote',
                 'position' => 15,
                 'formTextElementType' => 'q',
+                'class' => Quote::class,
             ],
             [
                 'formTextElementId' => $containerId,
                 'text' => 'Container',
                 'position' => 16,
                 'formTextElementType' => 'div',
+                'class' => Container::class,
             ]
         ];
 
@@ -302,6 +318,7 @@ class CreateJsonFormTest extends TestCase
                 'visible' => true,
                 'inputType' => InputType::TEXT,
                 'position' => 1,
+                'class' => Input::class,
             ],
             [
                 'formFieldId' => $checkboxId,
@@ -311,6 +328,7 @@ class CreateJsonFormTest extends TestCase
                 'required' => false,
                 'visible' => true,
                 'position' => 2,
+                'class' => Checkbox::class,
             ],
             [
                 'formFieldId' => $checkboxGroupId,
@@ -321,6 +339,7 @@ class CreateJsonFormTest extends TestCase
                 'required' => false,
                 'visible' => true,
                 'position' => 3,
+                'class' => CheckboxGroup::class,
             ],
             [
                 'formFieldId' => $radioButtonId,
@@ -330,6 +349,7 @@ class CreateJsonFormTest extends TestCase
                 'required' => false,
                 'visible' => true,
                 'position' => 4,
+                'class' => RadioButton::class,
             ],
             [
                 'formFieldId' => $radioButtonGroupId,
@@ -340,6 +360,7 @@ class CreateJsonFormTest extends TestCase
                 'required' => false,
                 'visible' => true,
                 'position' => 5,
+                'class' => RadioButtonGroup::class,
             ],
             [
                 'formFieldId' => $selectId,
@@ -350,6 +371,7 @@ class CreateJsonFormTest extends TestCase
                 'required' => false,
                 'visible' => true,
                 'position' => 6,
+                'class' => Select::class,
             ],
             [
                 'formFieldId' => $textAreaId,
@@ -359,6 +381,7 @@ class CreateJsonFormTest extends TestCase
                 'required' => false,
                 'visible' => true,
                 'position' => 7,
+                'class' => TextArea::class,
             ]
         ];
 
@@ -378,54 +401,63 @@ class CreateJsonFormTest extends TestCase
                 'text' => 'Headline 1',
                 'position' => 8,
                 'formTextElementType' => 'h1',
+                'class' => Headline1::class,
             ],
             [
                 'formTextElementId' => $headline2Id,
                 'text' => 'Headline 2',
                 'position' => 9,
                 'formTextElementType' => 'h2',
+                'class' => Headline2::class,
             ],
             [
                 'formTextElementId' => $headline3Id,
                 'text' => 'Headline 3',
                 'position' => 10,
                 'formTextElementType' => 'h3',
+                'class' => Headline3::class,
             ],
             [
                 'formTextElementId' => $headline4Id,
                 'text' => 'Headline 4',
                 'position' => 11,
                 'formTextElementType' => 'h4',
+                'class' => Headline4::class,
             ],
             [
                 'formTextElementId' => $headline5Id,
                 'text' => 'Headline 5',
                 'position' => 12,
                 'formTextElementType' => 'h5',
+                'class' => Headline5::class,
             ],
             [
                 'formTextElementId' => $headline6Id,
                 'text' => 'Headline 6',
                 'position' => 13,
                 'formTextElementType' => 'h6',
+                'class' => Headline6::class,
             ],
             [
                 'formTextElementId' => $paragraphId,
                 'text' => 'Paragraph',
                 'position' => 14,
                 'formTextElementType' => 'p',
+                'class' => Paragraph::class,
             ],
             [
                 'formTextElementId' => $quoteId,
                 'text' => 'Quote',
                 'position' => 15,
                 'formTextElementType' => 'q',
+                'class' => Quote::class,
             ],
             [
                 'formTextElementId' => $containerId,
                 'text' => 'Container',
                 'position' => 16,
                 'formTextElementType' => 'div',
+                'class' => Container::class,
             ]
         ];
 

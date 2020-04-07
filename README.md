@@ -1,4 +1,4 @@
-# JSON From Build
+# JSON Form Builder
 
 Create Dynamic Form-Configurations in a JSON Format to render it with your Frontend Environment of Choice
 
@@ -50,7 +50,8 @@ $form = new JsonForm(Uuid::uuid4()->toString(), $formFields, $formElements);
          "visible":true,
          "position":3,
          "formFieldType":"input",
-         "inputType":"text"
+         "inputType":"text",
+         "class":"JsonFormBuilder\\JsonForm\\FormField\\Input"
       },
       {
          "formFieldId":"5ab7faba-3547-46c5-a237-6164879c339d",
@@ -59,7 +60,8 @@ $form = new JsonForm(Uuid::uuid4()->toString(), $formFields, $formElements);
          "defaultValue":false,
          "required":false,
          "visible":true,
-         "formFieldType":"checkbox"
+         "formFieldType":"checkbox",
+         "class":"JsonFormBuilder\\JsonForm\\FormField\\Checkbox"
       },
       {
          "formFieldId":"1f4ca288-9f04-48b3-ba93-8367a46f84d4",
@@ -80,7 +82,8 @@ $form = new JsonForm(Uuid::uuid4()->toString(), $formFields, $formElements);
                "label":"A",
                "value":"A"
             }
-         ]
+         ],
+        "class":"JsonFormBuilder\\JsonForm\\FormField\\CheckboxGroup"
       }
    ],
    "formTextElements":[
@@ -88,13 +91,15 @@ $form = new JsonForm(Uuid::uuid4()->toString(), $formFields, $formElements);
          "formTextElementId":"9a9c41b1-3ecf-4eef-a383-98567b0c8a28",
          "formTextElementType":"h1",
          "text":"Your·First·Dynamic·Form",
-         "position":1
+         "position":1,
+         "class":"JsonFormBuilder\\JsonForm\\FormTextElement\\Headline1"
       },
       {
          "formTextElementId":"980954c1-acc5-4025-bc2e-97b4962fcc4f",
          "formTextElementType":"p",
          "text":"Create·your·custom·Form",
-         "position":2
+         "position":2,
+         "class":"JsonFormBuilder\\JsonForm\\FormTextElement\\Paragraph"
       }
    ]
 }

@@ -80,16 +80,7 @@ class RadioButtonGroup extends FormField implements SingleOptionFormFieldInterfa
 
     public function toArray(): array
     {
-        return [
-            'formFieldId' => $this->formFieldId,
-            'formFieldType' => $this->formFieldType->toString(),
-            'label' => $this->label,
-            'position' => $this->position,
-            'defaultValue' => $this->defaultValue,
-            'required' => $this->required,
-            'visible' => $this->visible,
-            'options' => $this->options->toArray(),
-        ];
+        return array_merge(parent::toArray(), ['options' => $this->options->toArray()]);
     }
 
     public static function fromArray(array $data): FormFieldInterface

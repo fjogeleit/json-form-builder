@@ -6,7 +6,7 @@ namespace JsonFormBuilder\JsonResult;
 
 use JsonSerializable;
 
-abstract class FormFieldValue implements JsonSerializable
+abstract class FormFieldValue implements FormFieldValueInterface
 {
     /**
      * @var string
@@ -40,8 +40,9 @@ abstract class FormFieldValue implements JsonSerializable
     {
         return [
             'formFieldId' => $this->formFieldId,
-            'formFieldValueType' => $this->formFieldValueType,
+            'formFieldValueType' => $this->formFieldValueType->toString(),
             'value' => $this->value(),
+            'class' => get_class($this)
         ];
     }
 

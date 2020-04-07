@@ -84,15 +84,7 @@ class TextArea extends FormField
 
     public function toArray(): array
     {
-        $base = [
-            'formFieldId' => $this->formFieldId,
-            'label' => $this->label,
-            'position' => $this->position,
-            'defaultValue' => $this->defaultValue,
-            'required' => $this->required,
-            'visible' => $this->visible,
-            'formFieldType' => $this->formFieldType->toString(),
-        ];
+        $base = parent::toArray();
 
         if (false === empty($this->placeholder)) {
             $base['placeholder'] = $this->placeholder;

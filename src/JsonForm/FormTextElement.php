@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace JsonFormBuilder\JsonForm;
 
-use JsonSerializable;
-
-abstract class FormTextElement implements PositionedElementInterface, JsonSerializable
+abstract class FormTextElement implements FormTextElementInterface
 {
     /**
      * @var string
@@ -67,6 +65,7 @@ abstract class FormTextElement implements PositionedElementInterface, JsonSerial
             'formTextElementType' => $this->formTextElementType->toString(),
             'text' => $this->text,
             'position' => $this->position,
+            'class' => get_class($this)
         ];
     }
 
@@ -74,8 +73,4 @@ abstract class FormTextElement implements PositionedElementInterface, JsonSerial
     {
         return $this->toArray();
     }
-
-   abstract public static function fromArray(array $data): FormTextElement;
-
-   abstract public static function validate(array $data): void;
 }

@@ -80,16 +80,7 @@ class Select extends FormField implements SingleOptionFormFieldInterface
 
     public function toArray(): array
     {
-        return [
-            'formFieldId' => $this->formFieldId,
-            'formFieldType' => $this->formFieldType->toString(),
-            'label' => $this->label,
-            'position' => $this->position,
-            'defaultValue' => $this->defaultValue,
-            'required' => $this->required,
-            'visible' => $this->visible,
-            'options' => $this->options->toArray(),
-        ];
+        return array_merge(parent::toArray(), ['options' => $this->options->toArray()]);
     }
 
     public static function fromArray(array $data): FormFieldInterface
@@ -120,9 +111,6 @@ class Select extends FormField implements SingleOptionFormFieldInterface
 
         Assertion::keyExists($data, 'visible');
         Assertion::boolean($data['visible']);
-
-        Assertion::keyExists($data, 'defaultValue');
-        Assertion::nullOrString($data['defaultValue']);
 
         Assertion::keyExists($data, 'position');
         Assertion::integer($data['position']);

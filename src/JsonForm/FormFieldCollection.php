@@ -8,7 +8,7 @@ use JsonFormBuilder\JsonForm\Exception\ItemAlreadyAdded;
 use JsonFormBuilder\JsonForm\Service\FormFieldFactory;
 use JsonSerializable;
 
-class FormFieldCollection implements JsonSerializable
+class FormFieldCollection extends \ArrayIterator implements JsonSerializable
 {
     /**
      * @var FormField[]
@@ -17,6 +17,7 @@ class FormFieldCollection implements JsonSerializable
 
     public function __construct(FormField ...$formFields)
     {
+        parent::__construct($formFields);
         $this->formFields = $formFields;
         $this->sort();
     }

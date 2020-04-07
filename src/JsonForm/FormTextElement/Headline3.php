@@ -6,6 +6,7 @@ namespace JsonFormBuilder\JsonForm\FormTextElement;
 
 use Assert\Assertion;
 use JsonFormBuilder\JsonForm\FormTextElement;
+use JsonFormBuilder\JsonForm\FormTextElementInterface;
 use JsonFormBuilder\JsonForm\FormTextElementType;
 
 class Headline3 extends FormTextElement
@@ -15,7 +16,7 @@ class Headline3 extends FormTextElement
         parent::__construct($formTextElementId, FormTextElementType::HEADLINE_3(), $text, $position);
     }
 
-    public static function fromArray(array $data): FormTextElement
+    public static function fromArray(array $data): FormTextElementInterface
     {
         self::validate($data);
 

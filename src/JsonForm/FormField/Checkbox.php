@@ -65,19 +65,6 @@ class Checkbox extends FormField implements BooleanFormFieldInterface
         throw InvalidValueType::with($this->formFieldId, BooleanValue::class, $value);
     }
 
-    public function toArray(): array
-    {
-        return [
-            'formFieldId' => $this->formFieldId,
-            'label' => $this->label,
-            'position' => $this->position,
-            'defaultValue' => $this->defaultValue,
-            'required' => $this->required,
-            'visible' => $this->visible,
-            'formFieldType' => $this->formFieldType->toString(),
-        ];
-    }
-
     public static function fromArray(array $data): FormFieldInterface
     {
         self::validate($data);
@@ -88,7 +75,7 @@ class Checkbox extends FormField implements BooleanFormFieldInterface
             $data['position'],
             $data['required'],
             $data['visible'],
-            $data['defaultValue'],
+            $data['defaultValue'] ?? false,
         );
     }
 
@@ -99,9 +86,6 @@ class Checkbox extends FormField implements BooleanFormFieldInterface
 
         Assertion::keyExists($data, 'label');
         Assertion::string($data['label']);
-
-        Assertion::keyExists($data, 'defaultValue');
-        Assertion::boolean($data['defaultValue']);
 
         Assertion::keyExists($data, 'required');
         Assertion::boolean($data['required']);

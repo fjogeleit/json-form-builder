@@ -24,7 +24,7 @@ class JsonResult implements JsonSerializable
     /**
      * @var FormFieldValueCollection
      */
-    private $formFieldValues;
+    protected $formFieldValues;
 
     public function __construct(string $jsonResultId, string $jsonFormId, FormFieldValueCollection $formFieldValues)
     {

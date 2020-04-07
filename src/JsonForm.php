@@ -22,12 +22,12 @@ class JsonForm implements JsonSerializable
     /**
      * @var FormFieldCollection
      */
-    private $formFields;
+    protected $formFields;
 
     /**
      * @var FormTextElementCollection
      */
-    private $formTextElements;
+    protected $formTextElements;
 
     public function __construct(
         string $jsonFormId,

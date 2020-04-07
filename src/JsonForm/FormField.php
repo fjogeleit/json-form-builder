@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace JsonFormBuilder\JsonForm;
 
-use JsonFormBuilder\JsonResult\FormFieldValue;
-
 abstract class FormField implements FormFieldInterface
 {
     /**
@@ -89,15 +87,17 @@ abstract class FormField implements FormFieldInterface
         return $this->toArray();
     }
 
-    abstract public function withPosition(int $position): FormFieldInterface;
-
-    abstract public function defaultValue();
-
-    abstract public function toArray(): array;
-
-    abstract public function validateValue(FormFieldValue $value): void;
-
-    abstract public static function validate(array $data): void;
-
-    abstract public static function fromArray(array $data): FormFieldInterface;
+    public function toArray(): array
+    {
+        return [
+            'formFieldId' => $this->formFieldId,
+            'label' => $this->label,
+            'position' => $this->position,
+            'defaultValue' => $this->defaultValue,
+            'required' => $this->required,
+            'visible' => $this->visible,
+            'formFieldType' => $this->formFieldType->toString(),
+            'class' => get_class($this),
+        ];
+    }
 }

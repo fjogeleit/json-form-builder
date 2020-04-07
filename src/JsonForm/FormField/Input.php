@@ -131,16 +131,7 @@ class Input extends FormField
 
     public function toArray(): array
     {
-        $base = [
-            'formFieldId' => $this->formFieldId,
-            'label' => $this->label,
-            'defaultValue' => $this->defaultValue,
-            'required' => $this->required,
-            'visible' => $this->visible,
-            'position' => $this->position,
-            'formFieldType' => $this->formFieldType->toString(),
-            'inputType' => $this->inputType->toString(),
-        ];
+        $base = array_merge(parent::toArray(), ['inputType' => $this->inputType->toString()]);
 
         if (false === empty($this->placeholder)) {
             $base['placeholder'] = $this->placeholder;

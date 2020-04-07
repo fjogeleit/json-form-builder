@@ -78,16 +78,7 @@ class MultiSelect extends FormField implements MultiOptionFormFieldInterface
 
     public function toArray(): array
     {
-        return [
-            'formFieldId' => $this->formFieldId,
-            'formFieldType' => $this->formFieldType->toString(),
-            'label' => $this->label,
-            'position' => $this->position,
-            'defaultValue' => $this->defaultValue,
-            'required' => $this->required,
-            'visible' => $this->visible,
-            'options' => $this->options->toArray(),
-        ];
+        return array_merge(parent::toArray(), ['options' => $this->options->toArray()]);
     }
 
     public static function fromArray(array $data): FormFieldInterface
@@ -101,7 +92,7 @@ class MultiSelect extends FormField implements MultiOptionFormFieldInterface
             OptionCollection::fromArray($data['options']),
             $data['required'],
             $data['visible'],
-            $data['defaultValue'],
+            $data['defaultValue'] ?? [],
         );
     }
 
@@ -118,9 +109,6 @@ class MultiSelect extends FormField implements MultiOptionFormFieldInterface
 
         Assertion::keyExists($data, 'visible');
         Assertion::boolean($data['visible']);
-
-        Assertion::keyExists($data, 'defaultValue');
-        Assertion::isArray($data['defaultValue']);
 
         Assertion::keyExists($data, 'position');
         Assertion::integer($data['position']);
