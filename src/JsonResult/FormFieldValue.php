@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace JsonFormBuilder\JsonResult;
 
-use JsonSerializable;
-
 abstract class FormFieldValue implements FormFieldValueInterface
 {
     /**

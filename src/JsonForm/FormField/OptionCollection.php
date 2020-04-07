@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace JsonFormBuilder\JsonForm\FormField;
 
+use ArrayIterator;
 use JsonFormBuilder\JsonForm\Exception\ValueNotExistsInOptions;
 use JsonSerializable;
 
-class OptionCollection extends \ArrayIterator implements JsonSerializable
+class OptionCollection extends ArrayIterator implements JsonSerializable
 {
     /**
      * @var Option[]

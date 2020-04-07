@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace JsonFormBuilder\JsonForm;
 
+use ArrayIterator;
 use JsonFormBuilder\JsonForm\Exception\ItemAlreadyAdded;
 use JsonFormBuilder\JsonForm\Service\FormTextElementFactory;
 use JsonSerializable;
 
-class FormTextElementCollection extends \ArrayIterator implements JsonSerializable
+class FormTextElementCollection extends ArrayIterator implements JsonSerializable
 {
     /**
-     * @var FormTextElement[]
+     * @var FormTextElementInterface[]
      */
     private $elements = [];
 
-    public function __construct(FormTextElement ...$elements)
+    public function __construct(FormTextElementInterface ...$elements)
     {
         parent::__construct($elements);
         $this->elements = $elements;
@@ -27,7 +28,7 @@ class FormTextElementCollection extends \ArrayIterator implements JsonSerializab
         return new self();
     }
 
-    public function add(FormTextElement $element): self
+    public function add(FormTextElementInterface $element): self
     {
         if (true === $this->hasField($element->formTextElementId())) {
             throw ItemAlreadyAdded::with($element->formTextElementId());
@@ -39,14 +40,14 @@ class FormTextElementCollection extends \ArrayIterator implements JsonSerializab
         return new self(...$elements);
     }
 
-    public function replace(FormTextElement $element): self
+    public function replace(FormTextElementInterface $element): self
     {
         return $this->remove($element->formTextElementId())->add($element);
     }
 
     public function remove(string $formTextElementId): self
     {
-        return $this->filter(function (FormTextElement $element) use ($formTextElementId) {
+        return $this->filter(function (FormTextElementInterface $element) use ($formTextElementId) {
             return $element->formTextElementId() !== $formTextElementId;
         });
     }
@@ -56,7 +57,7 @@ class FormTextElementCollection extends \ArrayIterator implements JsonSerializab
         return new self(...array_filter($this->elements, $callback));
     }
 
-    public function get(string $formTextElementId): ?FormTextElement
+    public function get(string $formTextElementId): ?FormTextElementInterface
     {
         foreach ($this->elements as $element) {
             if ($element->formTextElementId() === $formTextElementId) {
@@ -75,7 +76,7 @@ class FormTextElementCollection extends \ArrayIterator implements JsonSerializab
     public function toArray(): array
     {
         return array_values(
-            array_map(function (FormTextElement $element) {
+            array_map(function (FormTextElementInterface $element) {
                 return $element->toArray();
             }, $this->elements)
         );
@@ -99,7 +100,7 @@ class FormTextElementCollection extends \ArrayIterator implements JsonSerializab
 
     private function sort(): void
     {
-        usort($this->elements, function (FormTextElement $first, FormTextElement $second) {
+        usort($this->elements, function (FormTextElementInterface $first, FormTextElementInterface $second) {
             return $first->position() <=> $second->position();
         });
     }

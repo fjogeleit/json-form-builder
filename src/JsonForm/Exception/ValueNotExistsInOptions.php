@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace JsonFormBuilder\JsonForm\Exception;
 
-class ValueNotExistsInOptions extends \InvalidArgumentException
+use InvalidArgumentException;
+
+class ValueNotExistsInOptions extends InvalidArgumentException
 {
     public static function with(string $value): self
     {

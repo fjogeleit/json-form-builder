@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace JsonFormBuilder\JsonForm\Exception;
 
+use InvalidArgumentException;
 use JsonFormBuilder\JsonForm\FormTextElementType;
 
-class NoClassForFieldTextElementType extends \InvalidArgumentException
+class NoClassForFieldTextElementType extends InvalidArgumentException
 {
     public static function with(FormTextElementType $formTextElementType): self
     {

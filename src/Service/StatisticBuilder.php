@@ -68,7 +68,7 @@ class StatisticBuilder
         $results = $this->jsonResultFinder->findByFormId($jsonFormId);
 
         $statisticFields = $form->formFields()->filter(function (FormField $formField) {
-            return true === \in_array($formField->formFieldType()->toString(), self::OPTION_FIELDS);
+            return true === in_array($formField->formFieldType()->toString(), self::OPTION_FIELDS);
         });
 
         return $statisticFields

@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace JsonFormBuilder\JsonForm;
 
+use ArrayIterator;
 use JsonFormBuilder\JsonForm\Exception\ItemAlreadyAdded;
 use JsonFormBuilder\JsonForm\Service\FormFieldFactory;
 use JsonSerializable;
 
-class FormFieldCollection extends \ArrayIterator implements JsonSerializable
+class FormFieldCollection extends ArrayIterator implements JsonSerializable
 {
     /**
-     * @var FormField[]
+     * @var FormFieldInterface[]
      */
     private $formFields = [];
 
-    public function __construct(FormField ...$formFields)
+    public function __construct(FormFieldInterface ...$formFields)
     {
         parent::__construct($formFields);
         $this->formFields = $formFields;
@@ -27,7 +28,7 @@ class FormFieldCollection extends \ArrayIterator implements JsonSerializable
         return new self();
     }
 
-    public function add(FormField $formField): self
+    public function add(FormFieldInterface $formField): self
     {
         if (true === $this->hasField($formField->formFieldId())) {
             throw ItemAlreadyAdded::with($formField->formFieldId());
@@ -39,14 +40,14 @@ class FormFieldCollection extends \ArrayIterator implements JsonSerializable
         return new self(...$formFields);
     }
 
-    public function replace(FormField $formField): self
+    public function replace(FormFieldInterface $formField): self
     {
         return $this->remove($formField->formFieldId())->add($formField);
     }
 
     public function remove(string $formFieldId): self
     {
-        return $this->filter(function (FormField $field) use ($formFieldId) {
+        return $this->filter(function (FormFieldInterface $field) use ($formFieldId) {
             return $field->formFieldId() !== $formFieldId;
         });
     }
@@ -61,7 +62,7 @@ class FormFieldCollection extends \ArrayIterator implements JsonSerializable
         return array_map($callback, $this->formFields);
     }
 
-    public function get(string $formFieldId): ?FormField
+    public function get(string $formFieldId): ?FormFieldInterface
     {
         foreach ($this->formFields as $formField) {
             if ($formField->formFieldId() === $formFieldId) {
@@ -80,7 +81,7 @@ class FormFieldCollection extends \ArrayIterator implements JsonSerializable
     public function toArray(): array
     {
         return array_values(
-            array_map(function (FormField $formField) {
+            array_map(function (FormFieldInterface $formField) {
                 return $formField->toArray();
             }, $this->formFields)
         );
@@ -104,7 +105,7 @@ class FormFieldCollection extends \ArrayIterator implements JsonSerializable
 
     private function sort(): void
     {
-        usort($this->formFields, function (FormField $first, FormField $second) {
+        usort($this->formFields, function (FormFieldInterface $first, FormFieldInterface $second) {
             return $first->position() <=> $second->position();
         });
     }

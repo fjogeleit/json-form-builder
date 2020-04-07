@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace JsonFormBuilder\JsonForm\Exception;
 
+use InvalidArgumentException;
 use JsonFormBuilder\JsonForm\FormFieldType;
 
-class NoClassForFieldType extends \InvalidArgumentException
+class NoClassForFieldType extends InvalidArgumentException
 {
     public static function with(FormFieldType $formFieldType): self
     {
