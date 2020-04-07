@@ -8,12 +8,22 @@ use Assert\Assertion;
 use JsonFormBuilder\JsonForm\FormTextElement;
 use JsonFormBuilder\JsonForm\FormTextElementInterface;
 use JsonFormBuilder\JsonForm\FormTextElementType;
+use JsonFormBuilder\JsonForm\PositionedElementInterface;
 
 class Paragraph extends FormTextElement
 {
     public function __construct(string $formTextElementId, string $text, int $position)
     {
         parent::__construct($formTextElementId, FormTextElementType::PARAGRAPH(), $text, $position);
+    }
+
+    public function withPosition(int $position): PositionedElementInterface
+    {
+        return new static(
+            $this->formTextElementId,
+            $this->text,
+            $position
+        );
     }
 
     public static function fromArray(array $data): FormTextElementInterface

@@ -7,4 +7,5 @@ namespace JsonFormBuilder\JsonForm;
 interface PositionedElementInterface
 {
     public function position(): int;
+    public function withPosition(int $position): self;
 }

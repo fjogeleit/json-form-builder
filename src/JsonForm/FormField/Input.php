@@ -9,6 +9,7 @@ use JsonFormBuilder\JsonForm\Exception\InvalidValueType;
 use JsonFormBuilder\JsonForm\FormField;
 use JsonFormBuilder\JsonForm\FormFieldInterface;
 use JsonFormBuilder\JsonForm\FormFieldType;
+use JsonFormBuilder\JsonForm\PositionedElementInterface;
 use JsonFormBuilder\JsonResult\FormFieldValue;
 use JsonFormBuilder\JsonResult\FormFieldValue\StringValue;
 
@@ -104,7 +105,7 @@ class Input extends FormField implements PlaceholderFormFieldInterface
         return $this->max;
     }
 
-    public function withPosition(int $position): FormFieldInterface
+    public function withPosition(int $position): PositionedElementInterface
     {
         return new self(
             $this->formFieldId,

@@ -19,8 +19,6 @@ interface FormFieldInterface extends JsonSerializable, PositionedElementInterfac
 
     public function visible(): bool;
 
-    public function withPosition(int $position): self;
-
     public function jsonSerialize(): array;
 
     public function defaultValue();
