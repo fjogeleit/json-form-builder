@@ -12,7 +12,7 @@ use JsonFormBuilder\JsonForm\FormFieldType;
 use JsonFormBuilder\JsonResult\FormFieldValue;
 use JsonFormBuilder\JsonResult\FormFieldValue\StringValue;
 
-class TextArea extends FormField
+class TextArea extends FormField implements PlaceholderFormFieldInterface
 {
     /**
      * @var string|null
