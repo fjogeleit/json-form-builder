@@ -18,9 +18,10 @@ class FormFieldCollection extends ArrayIterator implements JsonSerializable
 
     public function __construct(FormFieldInterface ...$formFields)
     {
+        $formFields = $this->sort($formFields);
+
         parent::__construct($formFields);
         $this->formFields = $formFields;
-        $this->sort();
     }
 
     public static function emptyList(): self
@@ -55,6 +56,13 @@ class FormFieldCollection extends ArrayIterator implements JsonSerializable
     public function filter(callable $callback): self
     {
         return new self(...array_filter($this->formFields, $callback));
+    }
+
+    public function forEach(callable $callback): void
+    {
+        foreach ($this->formFields as $formField) {
+            $callback($formField);
+        }
     }
 
     public function map(callable $callback): array
@@ -103,10 +111,17 @@ class FormFieldCollection extends ArrayIterator implements JsonSerializable
         return $this->toArray();
     }
 
-    private function sort(): void
+    public function asArray(): array
     {
-        usort($this->formFields, function (FormFieldInterface $first, FormFieldInterface $second) {
+        return $this->formFields;
+    }
+
+    private function sort(array $formFields): array
+    {
+        usort($formFields, function (FormFieldInterface $first, FormFieldInterface $second) {
             return $first->position() <=> $second->position();
         });
+
+        return $formFields;
     }
 }

@@ -8,10 +8,10 @@ use JsonFormBuilder\Exception\InvalidStatisticFormType;
 use JsonFormBuilder\JsonForm\Exception\ValueNotExistsInOptions;
 use JsonFormBuilder\JsonForm\FormField;
 use JsonFormBuilder\JsonForm\FormField\BooleanFormFieldInterface;
+use JsonFormBuilder\JsonForm\FormField\EvaluableInterface;
 use JsonFormBuilder\JsonForm\FormField\MultiOptionFormFieldInterface;
 use JsonFormBuilder\JsonForm\FormField\Option;
 use JsonFormBuilder\JsonForm\FormField\SingleOptionFormFieldInterface;
-use JsonFormBuilder\JsonForm\FormFieldType;
 use JsonFormBuilder\JsonFormCollectionInterface;
 use JsonFormBuilder\JsonResult;
 use JsonFormBuilder\JsonResult\FormFieldValue\ArrayValue;
@@ -21,15 +21,6 @@ use JsonFormBuilder\JsonResult\Service\JsonResultFinderInterface;
 
 class StatisticBuilder
 {
-    private const OPTION_FIELDS = [
-        FormFieldType::CHECKBOX,
-        FormFieldType::CHECKBOX_GROUP,
-        FormFieldType::RADIO_BUTTON,
-        FormFieldType::RADIO_BUTTON_GROUP,
-        FormFieldType::SELECT,
-        FormFieldType::MULTI_SELECT,
-    ];
-
     /**
      * @var JsonResultFinderInterface
      */
@@ -68,7 +59,7 @@ class StatisticBuilder
         $results = $this->jsonResultFinder->findByFormId($jsonFormId);
 
         $statisticFields = $form->formFields()->filter(function (FormField $formField) {
-            return true === in_array($formField->formFieldType()->toString(), self::OPTION_FIELDS);
+            return $formField instanceof EvaluableInterface;
         });
 
         return $statisticFields

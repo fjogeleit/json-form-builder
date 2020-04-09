@@ -57,6 +57,13 @@ class RadioButton extends FormField implements BooleanFormFieldInterface
         );
     }
 
+    public function options(): OptionCollection
+    {
+        return OptionCollection::emptyList()
+            ->add(new Option('false', 'false'))
+            ->add(new Option('true', 'true'));
+    }
+
     public function validateValue(FormFieldValue $value): void
     {
         if (true === $value instanceof BooleanValue) {

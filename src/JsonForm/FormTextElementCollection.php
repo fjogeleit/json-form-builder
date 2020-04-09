@@ -18,9 +18,10 @@ class FormTextElementCollection extends ArrayIterator implements JsonSerializabl
 
     public function __construct(FormTextElementInterface ...$elements)
     {
+        $elements = $this->sort($elements);
+
         parent::__construct($elements);
         $this->elements = $elements;
-        $this->sort();
     }
 
     public static function emptyList(): self
@@ -55,6 +56,13 @@ class FormTextElementCollection extends ArrayIterator implements JsonSerializabl
     public function filter(callable $callback): self
     {
         return new self(...array_filter($this->elements, $callback));
+    }
+
+    public function forEach(callable $callback): void
+    {
+        foreach ($this->elements as $element) {
+            $callback($element);
+        }
     }
 
     public function get(string $formTextElementId): ?FormTextElementInterface
@@ -98,10 +106,17 @@ class FormTextElementCollection extends ArrayIterator implements JsonSerializabl
         return $this->toArray();
     }
 
-    private function sort(): void
+    public function asArray(): array
     {
-        usort($this->elements, function (FormTextElementInterface $first, FormTextElementInterface $second) {
+        $this->formFields;
+    }
+
+    private function sort(array $elements): array
+    {
+        usort($elements, function (FormTextElementInterface $first, FormTextElementInterface $second) {
             return $first->position() <=> $second->position();
         });
+
+        return $elements;
     }
 }

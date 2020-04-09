@@ -45,6 +45,13 @@ class Checkbox extends FormField implements BooleanFormFieldInterface
         return $this->defaultValue;
     }
 
+    public function options(): OptionCollection
+    {
+        return OptionCollection::emptyList()
+            ->add(new Option('false', 'false'))
+            ->add(new Option('true', 'true'));
+    }
+
     public function withPosition(int $position): PositionedElementInterface
     {
         return new self(
