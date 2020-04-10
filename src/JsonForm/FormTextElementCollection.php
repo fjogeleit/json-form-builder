@@ -58,6 +58,11 @@ class FormTextElementCollection extends ArrayIterator implements JsonSerializabl
         return new self(...array_filter($this->elements, $callback));
     }
 
+    public function map(callable $callback): array
+    {
+        return array_map($callback, $this->elements);
+    }
+
     public function forEach(callable $callback): void
     {
         foreach ($this->elements as $element) {

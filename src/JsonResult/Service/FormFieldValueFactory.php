@@ -10,7 +10,7 @@ use JsonFormBuilder\JsonResult\FormFieldValueInterface;
 
 class FormFieldValueFactory
 {
-    public static function fromArray(array $data): FormFieldValue
+    public static function fromArray(array $data): FormFieldValueInterface
     {
         $class = $data['class'];
 

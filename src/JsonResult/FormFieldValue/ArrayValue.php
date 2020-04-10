@@ -6,6 +6,7 @@ namespace JsonFormBuilder\JsonResult\FormFieldValue;
 
 use Assert\Assertion;
 use JsonFormBuilder\JsonResult\FormFieldValue;
+use JsonFormBuilder\JsonResult\FormFieldValueInterface;
 use JsonFormBuilder\JsonResult\FormFieldValueType;
 
 class ArrayValue extends FormFieldValue
@@ -17,7 +18,9 @@ class ArrayValue extends FormFieldValue
 
     public function __construct(string $formFieldId, ?array $value)
     {
-        Assertion::allString($value, 'A ArrayValue should only contain strings');
+        if (null !== $value) {
+            Assertion::allString($value, 'A ArrayValue should only contain strings');
+        }
 
         parent::__construct($formFieldId, FormFieldValueType::ARRAY());
         $this->value = $value ?? [];
@@ -26,6 +29,13 @@ class ArrayValue extends FormFieldValue
     public function value(): array
     {
         return $this->value;
+    }
+
+    public function withValue($value): FormFieldValueInterface
+    {
+        Assertion::isArray($value);
+
+        return new self($this->formFieldId, $value);
     }
 
     public static function fromArray(array $data): self

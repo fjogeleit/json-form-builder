@@ -11,11 +11,11 @@ use JsonSerializable;
 class FormFieldValueCollection implements JsonSerializable
 {
     /**
-     * @var FormFieldValue[]
+     * @var FormFieldValueInterface[]
      */
     private $formFieldValues = [];
 
-    public function __construct(FormFieldValue ...$formFieldValues)
+    public function __construct(FormFieldValueInterface ...$formFieldValues)
     {
         $this->formFieldValues = $formFieldValues;
     }
@@ -25,7 +25,7 @@ class FormFieldValueCollection implements JsonSerializable
         return new self();
     }
 
-    public function add(FormFieldValue $formFieldValue): self
+    public function add(FormFieldValueInterface $formFieldValue): self
     {
         if (true === $this->hasField($formFieldValue->formFieldId())) {
             throw ItemAlreadyAdded::with($formFieldValue->formFieldId());
@@ -39,7 +39,7 @@ class FormFieldValueCollection implements JsonSerializable
 
     public function remove(string $formFieldValueId): self
     {
-        return $this->filter(function (FormFieldValue $element) use ($formFieldValueId) {
+        return $this->filter(function (FormFieldValueInterface $element) use ($formFieldValueId) {
             return $element->formFieldId() !== $formFieldValueId;
         });
     }
@@ -49,12 +49,17 @@ class FormFieldValueCollection implements JsonSerializable
         return new self(...array_filter($this->formFieldValues, $callback));
     }
 
-    public function replace(FormFieldValue $formField): self
+    public function replace(FormFieldValueInterface $formField): self
     {
         return $this->remove($formField->formFieldId())->add($formField);
     }
 
-    public function get(string $formFieldId): ?FormFieldValue
+    public function map(callable $callable): array
+    {
+        return array_map($callable, $this->formFieldValues);
+    }
+
+    public function get(string $formFieldId): ?FormFieldValueInterface
     {
         foreach ($this->formFieldValues as $formField) {
             if ($formField->formFieldId() === $formFieldId) {
@@ -80,7 +85,7 @@ class FormFieldValueCollection implements JsonSerializable
     public function toArray(): array
     {
         return array_values(
-            array_map(function (FormFieldValue $formFieldValue) {
+            array_map(function (FormFieldValueInterface $formFieldValue) {
                 return $formFieldValue->jsonSerialize();
             }, $this->formFieldValues)
         );

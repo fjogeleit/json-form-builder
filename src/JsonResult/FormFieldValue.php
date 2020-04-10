@@ -34,6 +34,8 @@ abstract class FormFieldValue implements FormFieldValueInterface
 
     abstract public function value();
 
+    abstract public function withValue($value): FormFieldValueInterface;
+
     public function toArray(): array
     {
         return [

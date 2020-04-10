@@ -13,7 +13,7 @@ use JsonFormBuilder\JsonForm\PositionedElementInterface;
 use JsonFormBuilder\JsonResult\FormFieldValue;
 use JsonFormBuilder\JsonResult\FormFieldValue\StringValue;
 
-class Input extends FormField implements PlaceholderFormFieldInterface
+class Input extends FormField implements StringFormFieldInterface, PlaceholderFormFieldInterface
 {
     /**
      * @var string|null
@@ -169,22 +169,9 @@ class Input extends FormField implements PlaceholderFormFieldInterface
 
     public static function validate(array $data): void
     {
-        Assertion::keyExists($data, 'formFieldId');
-        Assertion::uuid($data['formFieldId']);
-
-        Assertion::keyExists($data, 'label');
-        Assertion::string($data['label']);
+        parent::validate($data);
 
         Assertion::keyExists($data, 'inputType');
         Assertion::string($data['inputType']);
-
-        Assertion::keyExists($data, 'required');
-        Assertion::boolean($data['required']);
-
-        Assertion::keyExists($data, 'visible');
-        Assertion::boolean($data['visible']);
-
-        Assertion::keyExists($data, 'position');
-        Assertion::integer($data['position']);
     }
 }

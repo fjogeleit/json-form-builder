@@ -19,7 +19,7 @@ use JsonFormBuilder\Enum;
 class FormFieldType extends Enum
 {
     public const INPUT = 'input';
-    public const TEXT_AREA = 'text_area';
+    public const TEXT_AREA = 'textarea';
     public const RADIO_BUTTON = 'radio_button';
     public const RADIO_BUTTON_GROUP = 'radio_button_group';
     public const CHECKBOX = 'checkbox';

@@ -30,10 +30,15 @@ class FormFieldTypeMapper
 
     public static function map(FormFieldType $type): string
     {
-        if (false === array_key_exists($type->toString(), self::MAP)) {
+        if (false === array_key_exists($type->toString(), static::mapping())) {
             throw NoClassForFieldType::with($type);
         }
 
-        return self::MAP[$type->toString()];
+        return static::mapping()[$type->toString()];
+    }
+
+    protected static function mapping(): array
+    {
+        return self::MAP;
     }
 }

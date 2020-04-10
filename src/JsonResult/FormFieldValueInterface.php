@@ -14,5 +14,7 @@ interface FormFieldValueInterface extends JsonSerializable
 
     public function value();
 
+    public function withValue($value): FormFieldValueInterface;
+
     public function toArray(): array;
 }

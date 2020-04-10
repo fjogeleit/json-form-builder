@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace JsonFormBuilder\JsonForm;
 
+use Assert\Assertion;
+
 abstract class FormField implements FormFieldInterface
 {
     /**
@@ -93,11 +95,29 @@ abstract class FormField implements FormFieldInterface
             'formFieldId' => $this->formFieldId,
             'label' => $this->label,
             'position' => $this->position,
-            'defaultValue' => $this->defaultValue,
+            'defaultValue' => $this->defaultValue(),
             'required' => $this->required,
             'visible' => $this->visible,
             'formFieldType' => $this->formFieldType->toString(),
             'class' => get_class($this),
         ];
+    }
+
+    public static function validate(array $data): void
+    {
+        Assertion::keyExists($data, 'formFieldId');
+        Assertion::uuid($data['formFieldId']);
+
+        Assertion::keyExists($data, 'label');
+        Assertion::string($data['label']);
+
+        Assertion::keyExists($data, 'required');
+        Assertion::boolean($data['required']);
+
+        Assertion::keyExists($data, 'visible');
+        Assertion::boolean($data['visible']);
+
+        Assertion::keyExists($data, 'position');
+        Assertion::integer($data['position']);
     }
 }

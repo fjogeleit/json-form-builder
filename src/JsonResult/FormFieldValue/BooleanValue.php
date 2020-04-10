@@ -6,6 +6,7 @@ namespace JsonFormBuilder\JsonResult\FormFieldValue;
 
 use Assert\Assertion;
 use JsonFormBuilder\JsonResult\FormFieldValue;
+use JsonFormBuilder\JsonResult\FormFieldValueInterface;
 use JsonFormBuilder\JsonResult\FormFieldValueType;
 
 class BooleanValue extends FormFieldValue
@@ -29,6 +30,13 @@ class BooleanValue extends FormFieldValue
     public function toString(): string
     {
         return $this->value ? 'true' : 'false';
+    }
+
+    public function withValue($value): FormFieldValueInterface
+    {
+        Assertion::boolean($value);
+
+        return new self($this->formFieldId, $value);
     }
 
     public static function fromArray(array $data): self

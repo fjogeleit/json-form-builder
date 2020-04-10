@@ -6,6 +6,7 @@ namespace JsonFormBuilder\JsonResult\FormFieldValue;
 
 use Assert\Assertion;
 use JsonFormBuilder\JsonResult\FormFieldValue;
+use JsonFormBuilder\JsonResult\FormFieldValueInterface;
 use JsonFormBuilder\JsonResult\FormFieldValueType;
 
 class StringValue extends FormFieldValue
@@ -34,6 +35,13 @@ class StringValue extends FormFieldValue
     public function isEmpty(): bool
     {
         return true === empty($this->value);
+    }
+
+    public function withValue($value): FormFieldValueInterface
+    {
+        Assertion::string($value);
+
+        return new self($this->formFieldId, $value);
     }
 
     public static function fromArray(array $data): self

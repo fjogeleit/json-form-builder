@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace JsonFormBuilder;
 
 use Assert\Assertion;
-use JsonFormBuilder\JsonResult\FormFieldValue;
 use JsonFormBuilder\JsonResult\FormFieldValueCollection;
+use JsonFormBuilder\JsonResult\FormFieldValueInterface;
 use JsonSerializable;
 
 class JsonResult implements JsonSerializable
@@ -48,17 +48,17 @@ class JsonResult implements JsonSerializable
         return $this->formFieldValues;
     }
 
-    public function getValue(string $fieldValueId): ?FormFieldValue
+    public function getValue(string $fieldValueId): ?FormFieldValueInterface
     {
         return $this->formFieldValues()->get($fieldValueId);
     }
 
-    public function addValue(FormFieldValue $fieldValue): void
+    public function addValue(FormFieldValueInterface $fieldValue): void
     {
         $this->formFieldValues = $this->formFieldValues()->add($fieldValue);
     }
 
-    public function replaceValue(FormFieldValue $fieldValue): void
+    public function replaceValue(FormFieldValueInterface $fieldValue): void
     {
         $this->formFieldValues = $this->formFieldValues()->replace($fieldValue);
     }
@@ -66,6 +66,11 @@ class JsonResult implements JsonSerializable
     public function removeValue(string $fieldValueId): void
     {
         $this->formFieldValues = $this->formFieldValues()->remove($fieldValueId);
+    }
+
+    public function replaceValues(FormFieldValueCollection $fieldValues): void
+    {
+        $this->formFieldValues = $fieldValues;
     }
 
     public function toArray()
