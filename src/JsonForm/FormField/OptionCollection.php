@@ -41,6 +41,11 @@ class OptionCollection extends ArrayIterator implements JsonSerializable
         });
     }
 
+    public function replace(Option $option): self
+    {
+        return $this->remove($option->value())->add($option);
+    }
+
     public function filter(callable $callback): self
     {
         return new self(...array_filter($this->options, $callback));

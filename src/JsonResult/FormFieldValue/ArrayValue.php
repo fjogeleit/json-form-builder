@@ -16,14 +16,12 @@ class ArrayValue extends FormFieldValue
      */
     protected $value;
 
-    public function __construct(string $formFieldId, ?array $value)
+    public function __construct(string $formFieldId, ?array $value = [])
     {
-        if (null !== $value) {
-            Assertion::allString($value, 'A ArrayValue should only contain strings');
-        }
+        Assertion::allString($value, 'A ArrayValue should only contain strings');
 
         parent::__construct($formFieldId, FormFieldValueType::ARRAY());
-        $this->value = $value ?? [];
+        $this->value = $value;
     }
 
     public function value(): array
