@@ -2,6 +2,35 @@
 
 Create Dynamic Form-Configurations in a JSON Format to render it with your Frontend Environment of Choice
 
+## Supported Form Elements
+
+### Form Fields
+* Input with different Types like "text", "color", "range, "number"
+* Textarea
+* Single Checkbox
+* Checkbox Groups
+* Single RadioButton
+* RadioButton Group
+* Select / Select (multiple)
+
+### Text Elements
+* Headlines (h1 - h6)
+* Paragraphs
+* Quote
+* Container (div)
+
+### Extendable
+
+Create your own Form or Text Element like Image-Uploads or totally custom Elements.
+
+## Framework Support
+
+This Package is independent from any Framework. For a easy integration into Symfony use Symfony integration for [fjogeleit/json-form-builder-bundle](https://github.com/fjogeleit/json-form-builder-bundle)
+
+The additional SymfonyBundle includes 
+* Symfony FormTypes to create FormFields and FormtextElements
+* DoctrineTypes to persist FormFieldCollections, FormTextElementCollections or FormFieldValueCollections as JSON into your Database of Choice
+
 ## Basic Example
 
 ### Code
