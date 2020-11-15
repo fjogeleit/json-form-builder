@@ -25,7 +25,7 @@ Create your own Form or Text Element like Image-Uploads or totally custom Elemen
 
 ## Framework Support
 
-This Package is independent from any Framework. For a easy integration into Symfony use Symfony integration for [fjogeleit/json-form-builder-bundle](https://github.com/fjogeleit/json-form-builder-bundle)
+This Package is independent from any Framework. For a easy integration into Symfony use [fjogeleit/json-form-builder-bundle](https://github.com/fjogeleit/json-form-builder-bundle)
 
 The additional SymfonyBundle includes 
 * Symfony FormTypes to create FormFields and FormtextElements
